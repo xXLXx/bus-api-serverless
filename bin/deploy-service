@@ -8,7 +8,7 @@ if [ -z "$SERVICE" ]; then
   exit 1
 fi
 
-symlinks=(node_modules package.json .env.production)
+symlinks=(node_modules package.json .env.development)
 copies=(webpack.config.js) # webpack.config should be copied instead of symlink
 
 cd "./src/handlers/$SERVICE"

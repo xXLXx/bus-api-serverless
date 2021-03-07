@@ -8,7 +8,9 @@ module.exports = {
   target: 'node',
   devtool: 'source-map',
   externals: [
-    nodeExternals()
+    nodeExternals({
+      modulesDir: path.resolve(__dirname, '../../node_modules'),
+    })
   ],
   output: {
     libraryTarget: 'commonjs',
@@ -24,10 +26,15 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env', { targets: "defaults" }]
+              ['@babel/preset-env', { targets: 'defaults' }]
             ],
             plugins: [
-              '@babel/plugin-syntax-export-default-from'
+              '@babel/plugin-syntax-export-default-from',
+              ["@babel/plugin-transform-runtime",
+                {
+                  "regenerator": true
+                }
+              ]
             ]
           }
         },

@@ -17,7 +17,7 @@ export async function handle(event, context) {
     await connectDatabase(context);
 
     const { pathParameters: param = {} } = event;
-    const id = decryptId(param.id);
+    const id = decryptId(decodeURIComponent(param.id));
     const now = new Date();
     const busScheduleQuery = BusSchedule.find().sort({ time: 1})
       .where('busStop').equals(id)

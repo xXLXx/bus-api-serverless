@@ -10,6 +10,7 @@
   "scripts": {
     "start": "env-cmd -f ./.env.local sls offline start --noTimeout --verbose",
     "seed": "env-cmd -f ./.env.local sls invoke local --function systemSeed",
+    "seed:dev": "env-cmd -f ./.env.development sls invoke local --function systemSeed",
     "deploy:dev": "env-cmd -f ./.env.development ./bin/deploy",
     "deploy-service": "./bin/deploy-service",
     "setup": "./bin/setup"
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.13.9",
     "@babel/preset-env": "^7.13.8",
     "babel-loader": "^8.2.2",
     "env-cmd": "^10.1.0",
@@ -29,6 +31,7 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
+    "@babel/runtime": "^7.13.9",
     "crypto-js": "^4.0.0",
     "faker": "^5.4.0",
     "lodash": "^4.17.21",
