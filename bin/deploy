@@ -1,0 +1,10 @@
+#!/bin/bash
+
+STAGE=${STAGE:=development}
+services=(system bus-stops)
+
+# Loop through services
+for i in "${services[@]}"; do
+  echo "Deploying $i service to $STAGE"
+  SERVICE=$i STAGE=$STAGE yarn deploy-service
+done

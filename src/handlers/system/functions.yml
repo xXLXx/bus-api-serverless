@@ -1,0 +1,2 @@
+systemSeed:
+  handler: ${self:custom.handlers.system}seed.handle

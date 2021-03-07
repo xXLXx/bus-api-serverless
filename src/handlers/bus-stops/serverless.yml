@@ -1,0 +1,25 @@
+service: bus-api-serverless-bus-stops
+
+frameworkVersion: '2'
+useDotenv: true
+
+provider:
+  name: aws
+  profile: ${env:PROFILE}
+  runtime: nodejs12.x
+  stage: ${env:STAGE, 'development'}
+  region: eu-central-1
+  apiGateway:
+    shouldStartNameWithService: true
+  role: BusStopsServiceRole
+
+plugins:
+  - serverless-webpack
+
+custom: ${file(../../serverless/custom.yml):${self:provider.stage}}
+
+functions:
+  - ${file(./functions.yml)}
+
+resources:
+  - ${file(../../serverless/roles/BusStopsServiceRole.yml)}

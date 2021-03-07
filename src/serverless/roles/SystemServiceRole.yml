@@ -1,0 +1,21 @@
+Resources:
+  SystemServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      RoleName: ${self:service}-${self:provider.stage}-SystemServiceRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: ${self:service}-${self:provider.stage}-SystemServiceRole
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - ${file(../../serverless/policies/ec2.yml)}
+              - ${file(../../serverless/policies/logs.yml)}

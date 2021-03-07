@@ -1,0 +1,15 @@
+busStopsGetAll:
+  handler: ${self:custom.handlers.bus-stops}getAll.handle
+  events:
+    - http:
+        path: ${env:API_PREFIX}/bus-stops
+        method: GET
+        cors: true
+
+busStopsGetById:
+  handler: ${self:custom.handlers.bus-stops}getById.handle
+  events:
+    - http:
+        path: ${env:API_PREFIX}/bus-stops/{id}
+        method: GET
+        cors: true

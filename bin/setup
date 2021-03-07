@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Script to automate serverless credentials configuration
+name=bus-stops
+stages=(development)
+echo "Please provide the appropriate AWS credentials"
+# Loop through stages and set AWS configuration
+for i in "${stages[@]}"; do
+  echo "Configuring credentials for $i"
+  aws configure --profile $name-$i
+done

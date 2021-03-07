@@ -1,0 +1,39 @@
+{
+  "name": "bus-api",
+  "version": "1.0.0",
+  "description": "Bus API created using serverless",
+  "main": "index.js",
+  "engineStrict": true,
+  "engines": {
+    "node": "^12.x"
+  },
+  "scripts": {
+    "start": "env-cmd -f ./.env.local sls offline start --noTimeout --verbose",
+    "seed": "env-cmd -f ./.env.local sls invoke local --function systemSeed",
+    "deploy:dev": "env-cmd -f ./.env.development ./bin/deploy",
+    "deploy-service": "./bin/deploy-service",
+    "setup": "./bin/setup"
+  },
+  "author": "xXLXx",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/preset-env": "^7.13.8",
+    "babel-loader": "^8.2.2",
+    "env-cmd": "^10.1.0",
+    "serverless": "^2.27.1",
+    "serverless-offline": "^6.8.0",
+    "serverless-webpack": "^5.3.5",
+    "webpack": "^5.24.2",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "dependencies": {
+    "crypto-js": "^4.0.0",
+    "faker": "^5.4.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.11.18",
+    "mongoose-data-seed": "^2.1.6",
+    "nanoid": "^3.1.20"
+  }
+}

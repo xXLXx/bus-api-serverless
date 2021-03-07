@@ -1,0 +1,41 @@
+#!/bin/bash
+
+STAGE=${STAGE:=development}
+
+# Ensure that service is specified
+if [ -z "$SERVICE" ]; then
+  echo "Service is required"
+  exit 1
+fi
+
+symlinks=(node_modules package.json .env.production)
+copies=(webpack.config.js) # webpack.config should be copied instead of symlink
+
+cd "./src/handlers/$SERVICE"
+
+for i in "${symlinks[@]}"; do
+  echo "Creating $i Symbolic Link"
+  ln -s "../../../$i" "./$i"
+done
+
+for i in "${copies[@]}"; do
+  echo "Copying $i file"
+  cp "../../../$i" "./$i"
+done
+
+sls deploy --env $STAGE --verbose
+
+for i in "${symlinks[@]}"; do
+  echo "Removing $i Symbolic Link"
+  rm "./$i"
+done
+
+for i in "${copies[@]}"; do
+  echo "Removing $i Copied files"
+  rm "./$i"
+done
+
+echo "Removing ./serverless"
+rm -r  "./.serverless"
+
+cd "../../../"

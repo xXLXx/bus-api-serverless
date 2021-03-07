@@ -1,0 +1,20 @@
+default: &default
+  webpack:
+    includeModules: true
+  serverless-offline:
+    httpPort: 8000
+    noPrependStageInUrl: true
+  root: src/handlers/
+  handlers:
+    bus-stops: ${self:custom.root}
+    system: ${self:custom.root}
+
+local:
+  <<: *default
+  handlers:
+    bus-stops: ${self:custom.root}bus-stops/
+    system: ${self:custom.root}system/
+
+development:
+  <<: *default
+  root: ''
