@@ -1,7 +1,9 @@
 # Bus Api Serverless
 
 This project is for testing purposes only as a demo for the use of the following technologies:
-- [Serverless](https://www.serverless.com/framework/docs/)
+- [Serverless in AWS template](https://www.serverless.com/framework/docs/)
+- [Mongoose](https://mongoosejs.com/)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
 This serves as the backend API for [bus-frontend](https://xxlxx.github.io/bus-frontend/)
 

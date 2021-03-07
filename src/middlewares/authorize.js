@@ -9,7 +9,7 @@ import ApiToken from '../models/ApiToken';
 export default async function authorize(event, context) {
   await connectDatabase(context);
 
-  const token = event.headers?.['X-Api-Key'];
+  const token = event.headers?.['X-Api-Key'] || event.headers?.['x-api-key'];
 
   if (token) {
     if (!await ApiToken.countDocuments({ token }).limit(1).exec()) {

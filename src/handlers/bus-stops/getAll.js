@@ -15,12 +15,12 @@ export async function handle(event, context) {
     await connectDatabase(context);
 
     const filters = ['near'];
-    const { queryStringParameters: qs = {} } = event;
+    const { queryStringParameters } = event;
+    const qs = queryStringParameters || {};
     const busStopQuery = BusStop.find();
 
     // Build up filters as requested to limit results
     filters.map((filterKey) => {
-      console.log(qs);
       const filterValue = qs[filterKey];
 
       if (filterValue) {
