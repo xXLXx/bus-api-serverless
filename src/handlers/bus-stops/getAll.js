@@ -85,11 +85,10 @@ function addNearFilter(query, filterValue) {
   if (!Array.isArray(near) || near.length !== 2) {
     throw new Error('near filter must in in a lat,lng format');
   }
-
-  // @todo fix and remove existinf filter
-  query.where('name').eq('Leo');
-  // query.where('location').near({
-  //   center: [Number(near[1]) || 0, Number(near[0]) || 0], // Format to lng, lat for mongo
-  //   maxDistance: config.nearDistanceInMeters
-  // });
+  query.where('location').near({
+    // Format to lng, lat for mongo, and GeoPoint so we can use meters as distance
+    center: {type: 'Point', coordinates: [Number(near[1]) || 0, Number(near[0]) || 0]},
+    maxDistance: config.maps.nearDistanceInMeters,
+    spherical: true
+  });
 }
